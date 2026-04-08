@@ -23,8 +23,6 @@ Bước 1: Truy cập trang đăng ký
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ccde5810-0761-4ad2-a56c-452076064ed0" />
 
-*Form đăng ký tài khoản Cloudflare*
-
 Bước 2: Sẽ thấy các lựa chọn:
 
 - Sign up bằng email
@@ -37,7 +35,6 @@ Bước 2: Sẽ thấy các lựa chọn:
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8abffabb-431f-42c2-b21f-40874cd51698" />
 
-*Giao diện Cloudflare*
 ## 3.Thêm domain đã đăng ký vào trong cloudflare 
 
 ### Bước1: Vào Domains → Overview
@@ -71,6 +68,43 @@ Bước 2: Sẽ thấy các lựa chọn:
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/d5136e98-9b5d-4651-9a6a-4127e3e7e70b" />
 
 ## 4. Nhập 2 dòng namespace của cloudflare vào trong trang quản lý DNS record của tên miền đăng ký
+
+### Bước 1: Đăng nhập trang quản lý domain ở nhà đăng ký
+1. Mở trang quản lý dịch vụ của nhà đăng ký domain (TenTen).
+2. Đăng nhập tài khoản.
+3. Vào **Quản lý tên miền / Domain**.
+4. Chọn đúng domain cần đổi: `luongvanhoc.io.vn`
+
+### Bước 2: Mở chức năng “Cài đặt NS / Nameserver”
+1. Trong danh sách domain, tìm nút bánh răng “Quản trị”.
+2. Chọn mục: **Cài đặt NS**
+
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/76b2f3b9-afd6-4901-b8a3-a8a4205db589" />
+
+### Bước 3: Thay NS cũ bằng 2 NS Cloudflare
+1. Trong cửa sổ/biểu mẫu “Cập nhật Nameserver”, sẽ thấy các ô **NS1, NS2, NS3...**
+2. Xóa nameserver cũ.
+3. Nhập đúng 2 dòng Cloudflare:
+   - **NS1:** `clayton.ns.cloudflare.com`
+   - **NS2:** `evelyn.ns.cloudflare.com`
+4. Bấm **Cập nhật**.
+
+<img width="1980" height="1035" alt="image" src="https://github.com/user-attachments/assets/ff131512-3bc5-49ba-8c43-a497277dd969" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c3ac013e-0bb3-4d3e-a13f-90b074fc0844" />
+
+### Bước 4: Xác nhận trên Cloudflare
+1. Quay lại Cloudflare.
+2. Chờ DNS cập nhật
+4. Khi xong, vào Cloudflare → **Domains → Overview**:
+   - Domain hiển thị trạng thái **Active** là hoàn tất.
+
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/8c31a0d7-93a3-4282-850d-6769b06e9f58" />
+
+
+
+
+
 
 
 
