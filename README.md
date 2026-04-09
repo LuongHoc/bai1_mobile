@@ -87,7 +87,7 @@ Bước 2: Sẽ thấy các lựa chọn:
 3. Nhập đúng 2 dòng Cloudflare:
    - **NS1:** `clayton.ns.cloudflare.com`
    - **NS2:** `evelyn.ns.cloudflare.com`
-4. Bấm **Cập nhật**.
+4. Nhấn **Cập nhật**.
 
 <img width="1980" height="1035" alt="image" src="https://github.com/user-attachments/assets/ff131512-3bc5-49ba-8c43-a497277dd969" />
 
@@ -101,12 +101,39 @@ Bước 2: Sẽ thấy các lựa chọn:
 
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/8c31a0d7-93a3-4282-850d-6769b06e9f58" />
 
+# B. Cài đặt Ubuntu + Docker
 
 
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/3339b99e-091a-4c48-a0d5-68944bc5eaa4" />
+
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/80a3349a-e5dc-4ccf-9f25-43f312a7f95c" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8832cede-0bf3-4554-8aff-07797dacf92d" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/584790f8-6e7a-4d56-94f5-8e274998f3bb" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9e135fe7-4d43-49db-ac92-68d5411183d4" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8c434b83-efa6-44ab-a13b-225c06ec06c3" />
 
 
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/a5fb2def-46a6-4611-9ae3-decfa5e6dcb6" />
+
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/5ed1ecbb-3573-4e2b-9637-a3ebd447ee8e" />
+
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/62c1aa86-406d-45c9-b24d-a15516706192" />
 
 
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/3e4320b7-1097-40b3-8bfd-eb07510ee993" />
+
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a81c4c32-b8e1-4803-bf3d-ffca4cdc3419" />
+
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/38c0c45c-a7b7-4314-a03e-809311290aa3" />
+
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a4b13d05-8a4c-46bb-a426-07d7ed581c2e" />
 
 
 
