@@ -115,97 +115,76 @@ Link tải: https://releases.ubuntu.com/24.04.4/
 link tải:https://download.com.vn/vmware-workstation-8587
 
 ### Bước 2. Tạo máy ảo Ubuntu trên VMware
+
 1. **Create a New Virtual Machine**
-2. Chọn **Installer disc image file (iso)** và trỏ đến file ISO Ubuntu.
 
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/3339b99e-091a-4c48-a0d5-68944bc5eaa4" />
 
-<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/80a3349a-e5dc-4ccf-9f25-43f312a7f95c" />
+2. Chọn **Installer disc image file (iso)** → trỏ đến ISO Ubuntu Server
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8832cede-0bf3-4554-8aff-07797dacf92d" />
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/04e17bed-829d-4f1d-88c2-73fd2b537759" />
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/584790f8-6e7a-4d56-94f5-8e274998f3bb" />
-
-3. Cấu hình tối thiểu gợi ý:
+3. Guest OS: **Linux → Ubuntu 64-bit**
+4. Cấu hình gợi ý:
    - CPU: 2 cores
-   - RAM: 4 GB
-   - Disk: 30 GB (hoặc hơn)
-4. Bật máy ảo và bắt đầu cài Ubuntu.
+   - RAM: 2–4 GB
+   - Disk: 20–30 GB
+   
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f527dc5d-cc7a-43bf-87a8-640c9d1bc7d6" />
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9e135fe7-4d43-49db-ac92-68d5411183d4" />
+5. **Network Adapter**: chọn **Bridged** (để IP cùng lớp mạng LAN)
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8c434b83-efa6-44ab-a13b-225c06ec06c3" />
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/f12f6a92-c20b-4894-ac11-36d6f52e08fc" />
 
-### Bước 3. Cài đặt Ubuntu 24.04.4 LTS (Desktop)
-Trong trình cài đặt Ubuntu:
-1. Chọn ngôn ngữ, bàn phím **English (US)**.
-2. Tới bước tạo user:
-   - **Your name**:`Luong Van Hoc`
-   - **Your computer’s name**:`ubuntu-vm`
-   - **Your username**: `admin1` (lưu ý: một số bản cài Desktop không cho dùng `admin` vì reserved)
-   - Đặt mật khẩu
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a81c4c32-b8e1-4803-bf3d-ffca4cdc3419" />
-3. Disk setup: chọn **Erase disk and install Ubuntu**  
-   > Chỉ xóa **ổ đĩa ảo** trong VM, không ảnh hưởng Windows thật.
-4. Cài đặt xong chọn **Restart now**.
+6. **Finish** → **Power on** máy ảo
 
-**Quan trọng:** Sau khi restart, nếu VM boot lại vào màn cài đặt, hãy tháo ISO:
-- VMware → **VM Settings → CD/DVD** → bỏ tick:
-  - `Connected`
-  - `Connect at power on`
-- Reboot lại VM.
+### Bước 3. Cài Ubuntu 24.04.4 Live Server (text installer)
+Trong trình cài đặt:
+1. GRUB: chọn **Try or Install Ubuntu Server**
+2. Language: chọn **English**
+3. Keyboard configuration:
+   - Layout: **English (US)**
+   - Variant: **English (US)**
+   - Chọn **Done**
+4. Network: để DHCP tự nhận IP → **Done**
+5. Proxy configuration: để trống → **Done**
+6. Storage:
+   - Chọn **Use an entire disk**
+   - (Có thể giữ mặc định LVM)
+   - Chọn **Done** và xác nhận **Continue**
+7. Profile configuration (tạo user để đăng nhập và SSH):
+   - Your name: `Luong Van Hoc`
+   - Your server’s name (hostname): `ubuntu-server`
+   - Pick a username:`admin1`
+   - Choose a password / Confirm: đặt mật khẩu
+   - **Done**
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fc09b445-bb9e-4196-a55c-f9e208cfab54" />
+8. Chờ cài xong → chọn **Reboot Now**
 
+### Bước 4. Tháo ISO sau khi cài (tránh boot lại vào bộ cài)
+Khi reboot nếu thấy yêu cầu “remove the installation medium” hoặc boot lại vào installer:
+- VMware → **VM → Settings → CD/DVD**
+  - bỏ tick **Connected**
+  - bỏ tick **Connect at power on**
+- Quay lại VM và nhấn **Enter** để tiếp tục reboot
 
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/7ff2b27b-1fa9-4628-8f94-9d6eb78f3052" />
 
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/f56325b8-e989-47a3-a99b-7619cedde823" />
 
+### Bước 5. Đăng nhập Ubuntu Server và lấy IP
 
+1. Sau khi máy boot vào Ubuntu Server (tty), đăng nhập user đã tạo `admin1`
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/51bee6f7-d3aa-409e-8daa-098ed79e3891" />
 
+2. Cài và bật SSH server (nếu chưa có)
+Kiểm tra service SSH:
+```bash
+sudo systemctl status ssh
+```
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/38c0c45c-a7b7-4314-a03e-809311290aa3" />
-
-
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a4b13d05-8a4c-46bb-a426-07d7ed581c2e" />
-
-
-
-<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/bbf9ba34-ce67-495c-95fc-38d7933d6492" />
-
-
-
-<img width="1105" height="640" alt="image" src="https://github.com/user-attachments/assets/0fb9294b-9736-4af4-8613-b7bce425c759" />
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-
----
-
-## 4) Cấu hình mạng VMware để Ubuntu có IP LAN (192.168.x.x)
-Trong VMware:
-- **VM → Settings → Network Adapter**
-  - Tick `Connected`
-  - Tick `Connect at power on`
-  - Chọn **Bridged: Connected directly to the physical network**
-  - (Không bắt buộc tick `Replicate physical network connection state`)
-
-Boot vào Ubuntu, kiểm tra IP sau (mục 6).
-
----
-
-## 5) Cài và bật SSH Server trên Ubuntu
-Mở Terminal trên Ubuntu (Ctrl+Alt+T) và chạy:
-
+Nếu báo `Unit ssh.service could not be found.` thì cài OpenSSH Server:
 ```bash
 sudo apt update
 sudo apt install -y openssh-server
@@ -213,81 +192,65 @@ sudo systemctl enable --now ssh
 sudo systemctl status ssh
 ```
 
-Nếu `status` hiển thị `Active: active (running)` là SSH đã chạy.
-
-> Thoát màn hình status: nhấn `q` (không gõ `:q`).
-
----
-
-## 6) Lấy địa chỉ IP của Ubuntu
-Chạy:
-
+Xác nhận thành công khi thấy:
+- `Active: active (running)`
+- `Server listening on 0.0.0.0 port 22`
+Kiểm tra IP:
 ```bash
 ip -4 addr
 ```
 
-Ghi lại dòng có dạng `inet 192.168...` tại card mạng (thường là `ens33`), ví dụ:
+Kết quả thực tế:
+- IPv4 của `ens33`: **192.168.1.16**
 
-- `inet 192.168.1.10/24 ...`  → IP SSH là **192.168.1.10**
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/e7c262ed-ce25-4fd7-a4c4-9debe2e9eb0c" />
 
----
 
-## 7) SSH từ Windows CMD vào Ubuntu
-Trên Windows mở **CMD** và gõ:
-
+### Bước 6. SSH từ Windows CMD vào Ubuntu
+Trên Windows mở **CMD** và chạy:
 ```bat
-ssh <username>@<ip_ubuntu>
+ssh admin1@192.168.1.16
 ```
 
-Ví dụ với user `admin1` và IP `192.168.1.10`:
+Lần đầu kết nối sẽ hỏi xác nhận fingerprint:
+- gõ `yes` → Enter  
+Sau đó nhập password (lưu ý password **không hiển thị**) → Enter
 
-```bat
-ssh admin1@192.168.1.10
-```
-
-Lần đầu SSH sẽ hỏi xác nhận host key:
-
-- Gõ `yes` → Enter
-- Nhập mật khẩu (mật khẩu **không hiện**) → Enter
-
-Khi thành công sẽ thấy:
-
+Kết quả sau khi SSH thành công sẽ thấy:
 - `Welcome to Ubuntu 24.04.4 LTS ...`
-- prompt dạng `admin1@ubuntu-vm:~$`
+- prompt dạng: `admin1@ubuntu-server:~$`
 
-=> Hoàn thành yêu cầu SSH từ Windows vào Ubuntu.
-
----
-
-## 8) (Tuỳ yêu cầu bài) Nếu bắt buộc user phải là `admin`
-Nếu đề yêu cầu đúng cú pháp `ssh admin@<ip>`, tạo thêm user `admin` trên Ubuntu:
-
-```bash
-sudo adduser admin
-sudo usermod -aG sudo admin
-```
-
-Sau đó trên Windows SSH lại:
-
-```bat
-ssh admin@192.168.1.10
-```
-
----
-
-## Kết quả đạt được (B1)
-- Ubuntu 24.04.4 LTS đã cài trên VM.
-- Ubuntu có IP LAN (ví dụ `192.168.1.10`).
-- SSH server đã bật (port 22).
-- Windows CMD SSH vào Ubuntu thành công bằng `ssh <user>@<ip>`.
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/032cccc5-155f-48e7-9981-a03b7bc18013" />
 
 
-<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/a5fb2def-46a6-4611-9ae3-decfa5e6dcb6" />
-
-<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/5ed1ecbb-3573-4e2b-9637-a3ebd447ee8e" />
-
-<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/62c1aa86-406d-45c9-b24d-a15516706192" />
 
 
-<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/3e4320b7-1097-40b3-8bfd-eb07510ee993" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
