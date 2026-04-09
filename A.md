@@ -1,12 +1,12 @@
 # A. Đăng ký tên miền xịn cho cá nhân:
-## 1. Đăng kí domain 
+# A-1. Đăng kí domain 
 Link đăng kí domain: https://tenten.vn/
 
 Tên domain đăng kí: luongvanhoc.io.vn
 
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/0e496273-550c-4899-9d96-11207c5f6d3f" />
 
-## 2.Đăng ký tài khoản cloudflare
+# A-2.Đăng ký tài khoản cloudflare
 
 Bước 1: Truy cập trang đăng ký
 
@@ -28,7 +28,7 @@ Bước 2: Sẽ thấy các lựa chọn:
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8abffabb-431f-42c2-b21f-40874cd51698" />
 
-## 3.Thêm domain đã đăng ký vào trong cloudflare 
+# A-3.Thêm domain đã đăng ký vào trong cloudflare 
 
 ### Bước1: Vào Domains → Overview
 1. Ở menu bên trái, chọn **Domains**.
@@ -60,7 +60,7 @@ Bước 2: Sẽ thấy các lựa chọn:
    - `evelyn.ns.cloudflare.com`
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/d5136e98-9b5d-4651-9a6a-4127e3e7e70b" />
 
-## 4. Nhập 2 dòng namespace của cloudflare vào trong trang quản lý DNS record của tên miền đăng ký
+# A-4. Nhập 2 dòng namespace của cloudflare vào trong trang quản lý DNS record của tên miền đăng ký
 
 ### Bước 1: Đăng nhập trang quản lý domain ở nhà đăng ký
 1. Mở trang quản lý dịch vụ của nhà đăng ký domain (TenTen).
@@ -93,4 +93,3 @@ Bước 2: Sẽ thấy các lựa chọn:
    - Domain hiển thị trạng thái **Active** là hoàn tất.
 
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/8c31a0d7-93a3-4282-850d-6769b06e9f58" />
-
