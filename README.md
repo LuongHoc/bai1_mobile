@@ -137,15 +137,151 @@ Bước 2: Sẽ thấy các lựa chọn:
 
 
 
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/bbf9ba34-ce67-495c-95fc-38d7933d6492" />
+
+
+
+<img width="1105" height="640" alt="image" src="https://github.com/user-attachments/assets/0fb9294b-9736-4af4-8613-b7bce425c759" />
 
 
 
 
 
+# B1 — Cài Ubuntu 24.04.4 LTS trên VMware + SSH từ Windows vào Ubuntu
 
+> Mục tiêu B1:  
+> - Cài Ubuntu 24.04.4 LTS bằng file ISO trên máy ảo (VMware/VirtualBox/Hyper-V).  
+> - Cấu hình mạng để từ **Windows CMD** có thể SSH vào Ubuntu.  
+> - Ví dụ lệnh SSH: `ssh <user>@<ip_ubuntu>`
 
+---
 
+## 1) Chuẩn bị
+- Tải file ISO: **Ubuntu 24.04.4 LTS (Desktop)** từ trang Ubuntu.
+- Cài công cụ ảo hóa: **VMware Workstation** (hoặc VirtualBox/Hyper-V).
 
+---
+
+## 2) Tạo máy ảo Ubuntu trên VMware
+1. **Create a New Virtual Machine**
+2. Chọn **Installer disc image file (iso)** và trỏ đến file ISO Ubuntu.
+3. Cấu hình tối thiểu gợi ý:
+   - CPU: 2 cores
+   - RAM: 4 GB
+   - Disk: 30 GB (hoặc hơn)
+4. Bật máy ảo và bắt đầu cài Ubuntu.
+
+---
+
+## 3) Cài đặt Ubuntu 24.04.4 LTS (Desktop)
+Trong trình cài đặt Ubuntu:
+1. Chọn ngôn ngữ, bàn phím (khuyến nghị **English (US)** nếu bị lỗi gõ tiếng Việt).
+2. Tới bước tạo user:
+   - **Your name**: có thể để không dấu, ví dụ `Luong Van Hoc`
+   - **Your computer’s name**: dùng chữ thường + dấu `-`, ví dụ `ubuntu-vm`
+   - **Your username**: ví dụ `admin1` (lưu ý: một số bản cài Desktop không cho dùng `admin` vì reserved)
+   - Đặt mật khẩu
+3. Disk setup: chọn **Erase disk and install Ubuntu**  
+   > Chỉ xóa **ổ đĩa ảo** trong VM, không ảnh hưởng Windows thật.
+4. Cài đặt xong chọn **Restart now**.
+
+**Quan trọng:** Sau khi restart, nếu VM boot lại vào màn cài đặt, hãy tháo ISO:
+- VMware → **VM Settings → CD/DVD** → bỏ tick:
+  - `Connected`
+  - `Connect at power on`
+- Reboot lại VM.
+
+---
+
+## 4) Cấu hình mạng VMware để Ubuntu có IP LAN (192.168.x.x)
+Trong VMware:
+- **VM → Settings → Network Adapter**
+  - Tick `Connected`
+  - Tick `Connect at power on`
+  - Chọn **Bridged: Connected directly to the physical network**
+  - (Không bắt buộc tick `Replicate physical network connection state`)
+
+Boot vào Ubuntu, kiểm tra IP sau (mục 6).
+
+---
+
+## 5) Cài và bật SSH Server trên Ubuntu
+Mở Terminal trên Ubuntu (Ctrl+Alt+T) và chạy:
+
+```bash
+sudo apt update
+sudo apt install -y openssh-server
+sudo systemctl enable --now ssh
+sudo systemctl status ssh
+```
+
+Nếu `status` hiển thị `Active: active (running)` là SSH đã chạy.
+
+> Thoát màn hình status: nhấn `q` (không gõ `:q`).
+
+---
+
+## 6) Lấy địa chỉ IP của Ubuntu
+Chạy:
+
+```bash
+ip -4 addr
+```
+
+Ghi lại dòng có dạng `inet 192.168...` tại card mạng (thường là `ens33`), ví dụ:
+
+- `inet 192.168.1.10/24 ...`  → IP SSH là **192.168.1.10**
+
+---
+
+## 7) SSH từ Windows CMD vào Ubuntu
+Trên Windows mở **CMD** và gõ:
+
+```bat
+ssh <username>@<ip_ubuntu>
+```
+
+Ví dụ với user `admin1` và IP `192.168.1.10`:
+
+```bat
+ssh admin1@192.168.1.10
+```
+
+Lần đầu SSH sẽ hỏi xác nhận host key:
+
+- Gõ `yes` → Enter
+- Nhập mật khẩu (mật khẩu **không hiện**) → Enter
+
+Khi thành công sẽ thấy:
+
+- `Welcome to Ubuntu 24.04.4 LTS ...`
+- prompt dạng `admin1@ubuntu-vm:~$`
+
+=> Hoàn thành yêu cầu SSH từ Windows vào Ubuntu.
+
+---
+
+## 8) (Tuỳ yêu cầu bài) Nếu bắt buộc user phải là `admin`
+Nếu đề yêu cầu đúng cú pháp `ssh admin@<ip>`, tạo thêm user `admin` trên Ubuntu:
+
+```bash
+sudo adduser admin
+sudo usermod -aG sudo admin
+```
+
+Sau đó trên Windows SSH lại:
+
+```bat
+ssh admin@192.168.1.10
+```
+
+---
+
+## Kết quả đạt được (B1)
+- Ubuntu 24.04.4 LTS đã cài trên VM.
+- Ubuntu có IP LAN (ví dụ `192.168.1.10`).
+- SSH server đã bật (port 22).
+- Windows CMD SSH vào Ubuntu thành công bằng `ssh <user>@<ip>`.
 
 
 
