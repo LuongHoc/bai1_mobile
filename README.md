@@ -223,9 +223,127 @@ Kết quả sau khi SSH thành công sẽ thấy:
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/032cccc5-155f-48e7-9981-a03b7bc18013" />
 
 
+## Tìm hiểu các lệnh cơ bản của ubuntu
+
+### 1) Đăng nhập Ubuntu (khuyến nghị qua SSH)
+Từ Windows CMD:
+
+```bat
+ssh admin1@192.168.1.16
+```
+
+Sau khi đăng nhập thành công sẽ thấy prompt dạng:
+```text
+admin1@ubuntu-server:~$
+```
+
+## 2) Thực hành các lệnh
+
+### Bước 0 — Kiểm tra thư mục hiện tại + liệt kê file
+```bash
+pwd
+ls
+ls -l
+```
+<img width="1104" height="641" alt="image" src="https://github.com/user-attachments/assets/439ec8f3-5774-4b63-81fb-da1b8ab202ef" />
+
+### Bước 1 — Tạo thư mục làm bài
+Tạo thư mục `B2` và thư mục con `data`:
+```bash
+mkdir -p B2/data
+```
+
+Kiểm tra:
+```bash
+ls -l
+```
+
+<img width="606" height="264" alt="image" src="https://github.com/user-attachments/assets/a74584cc-d770-420c-a817-b44186ae9656" />
 
 
+### Bước 2 — Chuyển thư mục làm việc (cd)
+```bash
+cd B2
+pwd
+ls
+```
+<img width="1105" height="640" alt="image" src="https://github.com/user-attachments/assets/0561c101-ec3d-47fc-a9e6-8988e04fb79c" />
 
+### Bước 3 — Tạo và sửa file bằng nano
+Tạo file `note.txt`:
+```bash
+nano note.txt
+```
+
+Nhập nội dung ví dụ:
+- `Day la bai B2`
+- `User: admin1`
+- `Ngay: 2026-04-09`
+
+Lưu và thoát:
+- Nhấn `CTRL + O` → nhấn `Enter` để xác nhận lưu
+- Nhấn `CTRL + X` để thoát
+
+<img width="1102" height="638" alt="image" src="https://github.com/user-attachments/assets/605f7126-7dfa-425e-91f9-d6260b038b1c" />
+
+Kiểm tra file:
+```bash
+ls -l
+```
+<img width="1105" height="641" alt="image" src="https://github.com/user-attachments/assets/6bd2ff42-7e13-4793-8ed6-da3090d82808" />
+
+### Bước 4 — Copy file (cp)
+Copy `note.txt` sang thư mục `data` với tên mới `note_copy.txt`:
+```bash
+cp note.txt data/note_copy.txt
+```
+
+Kiểm tra:
+```bash
+ls -l
+ls -l data
+```
+<img width="1104" height="634" alt="image" src="https://github.com/user-attachments/assets/f654c3da-99f5-4c13-8473-f67aedaa61ee" />
+
+### Bước 5 — Thay đổi quyền file (chmod)
+Xem quyền hiện tại:
+```bash
+ls -l note.txt
+```
+
+Đổi quyền `note.txt` thành `644`:
+```bash
+sudo chmod 644 note.txt
+ls -l note.txt
+```
+
+Đổi quyền file copy thành `777` (chỉ dùng cho bài lab):
+```bash
+sudo chmod 777 data/note_copy.txt
+ls -l data/note_copy.txt
+```
+
+<img width="1103" height="641" alt="image" src="https://github.com/user-attachments/assets/2db29e4b-43ad-4be1-a352-0908943107f6" />
+
+### Bước 6 — Edit file bằng `sudo nano`
+```bash
+sudo nano data/note_copy.txt
+```
+
+Thêm 1 dòng ví dụ:
+- `Da sua file bang sudo nano`
+
+Lưu và thoát:
+- `CTRL + O` → `Enter`
+- `CTRL + X`
+
+<img width="1103" height="639" alt="image" src="https://github.com/user-attachments/assets/03b230dd-3e01-4791-9c63-8f7a19ddd171" />
+
+### Bước 7 — Xem IP của máy Ubuntu
+```bash
+ip -4 addr
+```
+<img width="1103" height="639" alt="image" src="https://github.com/user-attachments/assets/181a57ac-1fc0-4e46-a6da-6754e4728409" />
 
 
 
