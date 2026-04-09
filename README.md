@@ -6,14 +6,14 @@
 ---
 
 # A. Đăng ký tên miền xịn cho cá nhân:
-## 1. Đăng kí domain 
+## A-1. Đăng kí domain 
 Link đăng kí domain: https://tenten.vn/
 
 Tên domain đăng kí: luongvanhoc.io.vn
 
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/0e496273-550c-4899-9d96-11207c5f6d3f" />
 
-## 2.Đăng ký tài khoản cloudflare
+## A-2.Đăng ký tài khoản cloudflare
 
 Bước 1: Truy cập trang đăng ký
 
@@ -35,7 +35,7 @@ Bước 2: Sẽ thấy các lựa chọn:
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8abffabb-431f-42c2-b21f-40874cd51698" />
 
-## 3.Thêm domain đã đăng ký vào trong cloudflare 
+## A-3.Thêm domain đã đăng ký vào trong cloudflare 
 
 ### Bước1: Vào Domains → Overview
 1. Ở menu bên trái, chọn **Domains**.
@@ -67,7 +67,7 @@ Bước 2: Sẽ thấy các lựa chọn:
    - `evelyn.ns.cloudflare.com`
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/d5136e98-9b5d-4651-9a6a-4127e3e7e70b" />
 
-## 4. Nhập 2 dòng namespace của cloudflare vào trong trang quản lý DNS record của tên miền đăng ký
+## A-4. Nhập 2 dòng namespace của cloudflare vào trong trang quản lý DNS record của tên miền đăng ký
 
 ### Bước 1: Đăng nhập trang quản lý domain ở nhà đăng ký
 1. Mở trang quản lý dịch vụ của nhà đăng ký domain (TenTen).
@@ -103,7 +103,7 @@ Bước 2: Sẽ thấy các lựa chọn:
 
 # B. Cài đặt Ubuntu + Docker
 
-## Cài đặt hệ điều hành Ubuntu 24.04.4 LTS + SSH từ Windows vào Ubuntu
+## B-1. Cài đặt hệ điều hành Ubuntu 24.04.4 LTS + SSH từ Windows vào Ubuntu
 
 ### Bước 1. Chuẩn bị
 - Tải file ISO: **Ubuntu 24.04.4 LTS (Desktop)** từ trang Ubuntu.
@@ -223,7 +223,7 @@ Kết quả sau khi SSH thành công sẽ thấy:
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/032cccc5-155f-48e7-9981-a03b7bc18013" />
 
 
-## Tìm hiểu các lệnh cơ bản của ubuntu
+## B-2. Tìm hiểu các lệnh cơ bản của ubuntu
 
 ### 1) Đăng nhập Ubuntu (khuyến nghị qua SSH)
 Từ Windows CMD:
@@ -346,13 +346,141 @@ ip -4 addr
 <img width="1103" height="639" alt="image" src="https://github.com/user-attachments/assets/181a57ac-1fc0-4e46-a6da-6754e4728409" />
 
 
+## B-3. Cài đặt Docker cho Ubuntu 24.04.4 LTS
+
+### 1) Cập nhật hệ thống và cài gói cần thiết
+```bash
+sudo apt update
+sudo apt install -y ca-certificates curl gnupg
+```
+
+### 2) Thêm GPG key của Docker
+```bash
+sudo install -m 0755 -d /etc/apt/keyrings
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
+  | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+> Nếu xuất hiện:  
+> `File '/etc/apt/keyrings/docker.gpg' exists. Overwrite? (y/N)`  
+> thì gõ `y` rồi Enter để ghi đè.
 
 
+### 3) Thêm Docker repository 
+```bash
+echo \
+"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+https://download.docker.com/linux/ubuntu \
+$(. /etc/os-release && echo $VERSION_CODENAME) stable" \
+| sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+Cập nhật lại package list:
+```bash
+sudo apt update
+```
+
+<img width="796" height="639" alt="image" src="https://github.com/user-attachments/assets/632b4242-523a-43bd-b052-6e880461c1ec" />
+
+### 4) Cài Docker Engine + Docker Compose plugin
+```bash
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+Bật Docker chạy ngay và tự khởi động cùng hệ thống:
+```bash
+sudo systemctl enable --now docker
+```
 
 
+## B-4. Kiểm tra Docker đã cài thành công
+```bash
+docker --version
+docker compose version
+sudo systemctl status docker
+```
+
+Kết quả:
+- Có version của Docker
+- Có version của `docker compose`
+- `systemctl status docker` báo `Active: active (running)`  
+  (nhấn `q` để thoát màn hình status)
+  
+<img width="1105" height="638" alt="image" src="https://github.com/user-attachments/assets/ca1ea930-643a-4198-b765-e61cd9d496c6" />
 
 
+## B-5. Cấu hình chạy Docker không cần `sudo`
+Thêm user hiện tại vào nhóm `docker`:
+```bash
+sudo usermod -aG docker $USER
+```
 
+Áp dụng group mới (không cần reboot):
+```bash
+newgrp docker
+```
+
+Kiểm tra nhóm hiện tại:
+```bash
+groups
+```
+Kỳ vọng có chữ `docker`.
+
+Test chạy Docker không cần sudo:
+```bash
+docker run --rm hello-world
+```
+
+Nếu thấy:
+```text
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+```
+=> Docker hoạt động đúng.
+
+<img width="1102" height="638" alt="image" src="https://github.com/user-attachments/assets/93098318-57cb-4f36-97fa-fa8a3039e37d" />
+
+## B-6. Một số lệnh Docker / Docker Compose cần biết
+### Docker
+```bash
+docker ps
+docker ps -a
+docker images
+docker pull nginx:latest
+docker logs <container>
+docker stop <container>
+docker rm <container>
+```
+
+### Docker Compose
+```bash
+docker compose up -d
+docker compose ps
+docker compose logs -f
+docker compose down
+```
+
+## B-7. Mở firewall UFW cho cổng 80, 1880, 9630
+Cho phép các cổng:
+```bash
+sudo ufw allow 80/tcp
+sudo ufw allow 1880/tcp
+sudo ufw allow 9630/tcp
+```
+
+Kiểm tra trạng thái:
+```bash
+sudo ufw status
+```
+
+Nếu UFW đang `inactive` nhưng yêu cầu bật firewall:
+```bash
+sudo ufw enable
+sudo ufw status
+```
 
 
 
