@@ -172,7 +172,7 @@ Khi reboot nếu thấy yêu cầu “remove the installation medium” hoặc b
 
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/f56325b8-e989-47a3-a99b-7619cedde823" />
 
-### Bước 5. Đăng nhập Ubuntu Server và lấy IP
+### Bước 5. Đăng nhập Ubuntu Server cài SSH và lấy IP
 
 1. Sau khi máy boot vào Ubuntu Server (tty), đăng nhập user đã tạo `admin1`
 
