@@ -103,7 +103,7 @@ Bước 2: Sẽ thấy các lựa chọn:
 
 # B. Cài đặt Ubuntu + Docker
 
-## B-1. Cài đặt hệ điều hành Ubuntu 24.04.4 LTS + SSH từ Windows vào Ubuntu
+# B-1. Cài đặt hệ điều hành Ubuntu 24.04.4 LTS + SSH từ Windows vào Ubuntu
 
 ### Bước 1. Chuẩn bị
 - Tải file ISO: **Ubuntu 24.04.4 LTS (Desktop)** từ trang Ubuntu.
@@ -223,7 +223,7 @@ Kết quả sau khi SSH thành công sẽ thấy:
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/032cccc5-155f-48e7-9981-a03b7bc18013" />
 
 
-## B-2. Tìm hiểu các lệnh cơ bản của ubuntu
+# B-2. Tìm hiểu các lệnh cơ bản của ubuntu
 
 ### 1) Đăng nhập Ubuntu (khuyến nghị qua SSH)
 Từ Windows CMD:
@@ -346,7 +346,7 @@ ip -4 addr
 <img width="1103" height="639" alt="image" src="https://github.com/user-attachments/assets/181a57ac-1fc0-4e46-a6da-6754e4728409" />
 
 
-## B-3. Cài đặt Docker cho Ubuntu 24.04.4 LTS
+# B-3. Cài đặt Docker cho Ubuntu 24.04.4 LTS
 
 ### 1) Cập nhật hệ thống và cài gói cần thiết
 ```bash
@@ -396,7 +396,7 @@ sudo systemctl enable --now docker
 ```
 
 
-## B-4. Kiểm tra Docker đã cài thành công
+# B-4. Kiểm tra Docker đã cài thành công
 ```bash
 docker --version
 docker compose version
@@ -412,7 +412,7 @@ Kết quả:
 <img width="1105" height="638" alt="image" src="https://github.com/user-attachments/assets/ca1ea930-643a-4198-b765-e61cd9d496c6" />
 
 
-## B-5. Cấu hình chạy Docker không cần `sudo`
+# B-5. Cấu hình chạy Docker không cần `sudo`
 Thêm user hiện tại vào nhóm `docker`:
 ```bash
 sudo usermod -aG docker $USER
@@ -443,7 +443,7 @@ This message shows that your installation appears to be working correctly.
 
 <img width="1102" height="638" alt="image" src="https://github.com/user-attachments/assets/93098318-57cb-4f36-97fa-fa8a3039e37d" />
 
-## B-6. Tìm hiểu tập lệnh của docker và docker compose
+# B-6. Tìm hiểu tập lệnh của docker và docker compose
 
 ## 1. Docker
 
@@ -519,7 +519,6 @@ Ghi chú:
 - Network giúp các container giao tiếp với nhau qua tên container/service.
 - Khi dùng Docker Compose, network thường được tạo tự động.
 
----
 
 ## 2) Docker Compose
 
@@ -543,15 +542,11 @@ Giải thích:
 - `down`: dừng và xoá container + network do compose tạo  
   (muốn xoá cả volume dùng `docker compose down -v`)
 
----
-
 ### 2.3 Build image (khi có Dockerfile)
 ```bash
 docker compose build
 docker compose up -d --build
 ```
-
----
 
 ### 2.4 Stop / Start / Restart theo stack compose
 ```bash
@@ -560,78 +555,61 @@ docker compose start
 docker compose restart
 ```
 
----
 
 ### 2.5 Xem cấu hình sau khi compose xử lý biến môi trường
 ```bash
 docker compose config
 ```
 
----
+# B-7. Mở firewall UFW cho cổng 80, 1880, 9630
 
-## 3) Ví dụ file docker-compose.yml (Node-RED port 1880)
-
-Tạo thư mục và file:
+## 1) Kiểm tra trạng thái UFW
 ```bash
-mkdir -p ~/compose-nodered
-cd ~/compose-nodered
-nano docker-compose.yml
+sudo ufw status
 ```
 
-Nội dung `docker-compose.yml`:
-```yaml
-services:
-  nodered:
-    image: nodered/node-red:latest
-    container_name: nodered
-    ports:
-      - "1880:1880"
-    restart: unless-stopped
-```
+- Nếu kết quả là `Status: inactive`: UFW đang tắt (chưa chặn gì).
+- Nếu kết quả là `Status: active`: UFW đang bật (đang áp dụng rule).
 
-Chạy Node-RED:
+<img width="1103" height="639" alt="image" src="https://github.com/user-attachments/assets/ca612286-662c-4091-9520-c346417cac02" />
+
+
+## 2) Cho phép SSH để tránh mất kết nối
+Vì thao tác qua SSH nên cần cho phép SSH (port 22) trước khi bật UFW:
 ```bash
-docker compose up -d
-docker compose ps
+sudo ufw allow OpenSSH
 ```
 
-Kiểm tra cổng (trên Ubuntu):
-```bash
-curl -I http://localhost:1880
-```
+<img width="1106" height="639" alt="image" src="https://github.com/user-attachments/assets/2e1b25ed-b724-4eb5-81d7-6026c2f24509" />
 
-Dừng và xoá stack:
-```bash
-docker compose down
-```
 
----
-
-## 4) Kết luận
-- Docker dùng để quản lý **image/container/network/volume** bằng các lệnh `docker ...`
-- Docker Compose dùng để chạy **nhiều container** theo cấu hình trong `docker-compose.yml` bằng các lệnh `docker compose ...`
-- Đã nắm được các lệnh quan trọng: `pull`, `images`, `ps`, `run`, `logs`, `exec`, `stop/start/rm` và `compose up/down/logs/ps`.
-
-## B-7. Mở firewall UFW cho cổng 80, 1880, 9630
-Cho phép các cổng:
+## 3) Mở các cổng yêu cầu: 80, 1880, 9630
 ```bash
 sudo ufw allow 80/tcp
 sudo ufw allow 1880/tcp
 sudo ufw allow 9630/tcp
 ```
+<img width="1103" height="638" alt="image" src="https://github.com/user-attachments/assets/b252ca74-d7c6-4f0d-b2b1-166a5793a076" />
 
-Kiểm tra trạng thái:
-```bash
-sudo ufw status
-```
-
-Nếu UFW đang `inactive` nhưng yêu cầu bật firewall:
+## 4) Bật UFW và cho phép tự khởi động cùng hệ thống
 ```bash
 sudo ufw enable
-sudo ufw status
 ```
 
+Khi hệ thống hỏi:
+```text
+Proceed with operation (y|n)?
+```
+gõ `y` rồi Enter.
 
+<img width="1104" height="642" alt="image" src="https://github.com/user-attachments/assets/bca12d8b-0840-40ce-af66-fd80a42a1e97" />
+
+## 5) Kiểm tra lại rule đã được áp dụng
+```bash
+sudo ufw status numbered
+```
+
+<img width="1105" height="646" alt="image" src="https://github.com/user-attachments/assets/155c77fd-8124-4969-9cd6-5c56c4518042" />
 
 
 
