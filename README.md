@@ -7,7 +7,7 @@
 
 # A. Đăng ký tên miền xịn cho cá nhân:
 ## 1. Đăng kí domain 
-link đăng kí domain: https://tenten.vn/
+Link đăng kí domain: https://tenten.vn/
 
 Tên domain đăng kí: luongvanhoc.io.vn
 
