@@ -443,25 +443,174 @@ This message shows that your installation appears to be working correctly.
 
 <img width="1102" height="638" alt="image" src="https://github.com/user-attachments/assets/93098318-57cb-4f36-97fa-fa8a3039e37d" />
 
-## B-6. Một số lệnh Docker / Docker Compose cần biết
-### Docker
+## B-6. Tìm hiểu tập lệnh của docker và docker compose
+
+## 1. Docker
+
+### 1.1 Kiểm tra phiên bản và thông tin Docker
+```bash
+docker --version
+docker version
+docker info
+```
+
+- `docker --version`: xem phiên bản Docker client
+- `docker version`: xem chi tiết phiên bản client/server
+- `docker info`: thông tin tổng quan Docker Engine (storage driver, số container, network…)
+
+### 1.2 Quản lý Image
+```bash
+docker images
+docker pull nginx:latest
+docker rmi nginx:latest
+docker image prune -a
+```
+
+- `docker images`: liệt kê các image đang có
+- `docker pull <image>:<tag>`: tải image từ registry (thường là Docker Hub)
+- `docker rmi <image>`: xoá image
+- `docker image prune -a`: dọn image không dùng (**cẩn thận** vì có thể xoá nhiều image)
+
+
+### 1.3 Quản lý Container
 ```bash
 docker ps
 docker ps -a
-docker images
-docker pull nginx:latest
-docker logs <container>
-docker stop <container>
-docker rm <container>
+docker run --name web -d -p 80:80 nginx:latest
+docker logs web
+docker exec -it web bash
+docker stop web
+docker start web
+docker restart web
+docker rm web
 ```
 
-### Docker Compose
+Giải thích nhanh:
+- `docker ps`: xem container đang chạy
+- `docker ps -a`: xem tất cả container (kể cả đã dừng)
+- `docker run`: tạo + chạy container  
+  Ví dụ: `-d` chạy nền, `--name web` đặt tên, `-p 80:80` map cổng host:container
+- `docker logs <name>`: xem log
+- `docker exec -it <name> bash`: vào container để thao tác
+- `docker stop/start/restart`: dừng / chạy / restart container
+- `docker rm <name>`: xoá container (phải stop trước, hoặc dùng `-f`)
+
+### 1.4 Quản lý Volume (dữ liệu bền vững)
+```bash
+docker volume ls
+docker volume create mydata
+docker volume inspect mydata
+docker volume rm mydata
+```
+
+Ghi chú:
+- Volume giúp dữ liệu **không mất** khi xoá container.
+- Thường dùng cho database, ứng dụng cần lưu dữ liệu.
+
+### 1.5 Quản lý Network (mạng cho container)
+```bash
+docker network ls
+docker network create mynet
+docker network inspect mynet
+docker network rm mynet
+```
+
+Ghi chú:
+- Network giúp các container giao tiếp với nhau qua tên container/service.
+- Khi dùng Docker Compose, network thường được tạo tự động.
+
+---
+
+## 2) Docker Compose
+
+### 2.1 Kiểm tra phiên bản
+```bash
+docker compose version
+```
+
+### 2.2 Các lệnh Compose cơ bản
 ```bash
 docker compose up -d
 docker compose ps
 docker compose logs -f
 docker compose down
 ```
+
+Giải thích:
+- `up -d`: tạo và chạy tất cả service theo file `docker-compose.yml` / `compose.yaml`
+- `ps`: xem trạng thái các service/container
+- `logs -f`: xem log realtime
+- `down`: dừng và xoá container + network do compose tạo  
+  (muốn xoá cả volume dùng `docker compose down -v`)
+
+---
+
+### 2.3 Build image (khi có Dockerfile)
+```bash
+docker compose build
+docker compose up -d --build
+```
+
+---
+
+### 2.4 Stop / Start / Restart theo stack compose
+```bash
+docker compose stop
+docker compose start
+docker compose restart
+```
+
+---
+
+### 2.5 Xem cấu hình sau khi compose xử lý biến môi trường
+```bash
+docker compose config
+```
+
+---
+
+## 3) Ví dụ file docker-compose.yml (Node-RED port 1880)
+
+Tạo thư mục và file:
+```bash
+mkdir -p ~/compose-nodered
+cd ~/compose-nodered
+nano docker-compose.yml
+```
+
+Nội dung `docker-compose.yml`:
+```yaml
+services:
+  nodered:
+    image: nodered/node-red:latest
+    container_name: nodered
+    ports:
+      - "1880:1880"
+    restart: unless-stopped
+```
+
+Chạy Node-RED:
+```bash
+docker compose up -d
+docker compose ps
+```
+
+Kiểm tra cổng (trên Ubuntu):
+```bash
+curl -I http://localhost:1880
+```
+
+Dừng và xoá stack:
+```bash
+docker compose down
+```
+
+---
+
+## 4) Kết luận
+- Docker dùng để quản lý **image/container/network/volume** bằng các lệnh `docker ...`
+- Docker Compose dùng để chạy **nhiều container** theo cấu hình trong `docker-compose.yml` bằng các lệnh `docker compose ...`
+- Đã nắm được các lệnh quan trọng: `pull`, `images`, `ps`, `run`, `logs`, `exec`, `stop/start/rm` và `compose up/down/logs/ps`.
 
 ## B-7. Mở firewall UFW cho cổng 80, 1880, 9630
 Cho phép các cổng:
