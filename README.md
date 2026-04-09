@@ -103,6 +103,20 @@ Bước 2: Sẽ thấy các lựa chọn:
 
 # B. Cài đặt Ubuntu + Docker
 
+## Cài đặt hệ điều hành Ubuntu 24.04.4 LTS + SSH từ Windows vào Ubuntu
+
+### Bước 1. Chuẩn bị
+- Tải file ISO: **Ubuntu 24.04.4 LTS (Desktop)** từ trang Ubuntu.
+
+Link tải: https://releases.ubuntu.com/24.04.4/
+
+- Cài công cụ ảo hóa: **VMware Workstation**
+
+link tải:https://download.com.vn/vmware-workstation-8587
+
+### Bước 2. Tạo máy ảo Ubuntu trên VMware
+1. **Create a New Virtual Machine**
+2. Chọn **Installer disc image file (iso)** và trỏ đến file ISO Ubuntu.
 
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/3339b99e-091a-4c48-a0d5-68944bc5eaa4" />
 
@@ -112,22 +126,40 @@ Bước 2: Sẽ thấy các lựa chọn:
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/584790f8-6e7a-4d56-94f5-8e274998f3bb" />
 
+3. Cấu hình tối thiểu gợi ý:
+   - CPU: 2 cores
+   - RAM: 4 GB
+   - Disk: 30 GB (hoặc hơn)
+4. Bật máy ảo và bắt đầu cài Ubuntu.
+
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9e135fe7-4d43-49db-ac92-68d5411183d4" />
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8c434b83-efa6-44ab-a13b-225c06ec06c3" />
 
-
-<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/a5fb2def-46a6-4611-9ae3-decfa5e6dcb6" />
-
-<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/5ed1ecbb-3573-4e2b-9637-a3ebd447ee8e" />
-
-<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/62c1aa86-406d-45c9-b24d-a15516706192" />
-
-
-<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/3e4320b7-1097-40b3-8bfd-eb07510ee993" />
-
-
+### Bước 3. Cài đặt Ubuntu 24.04.4 LTS (Desktop)
+Trong trình cài đặt Ubuntu:
+1. Chọn ngôn ngữ, bàn phím **English (US)**.
+2. Tới bước tạo user:
+   - **Your name**:`Luong Van Hoc`
+   - **Your computer’s name**:`ubuntu-vm`
+   - **Your username**: `admin1` (lưu ý: một số bản cài Desktop không cho dùng `admin` vì reserved)
+   - Đặt mật khẩu
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a81c4c32-b8e1-4803-bf3d-ffca4cdc3419" />
+3. Disk setup: chọn **Erase disk and install Ubuntu**  
+   > Chỉ xóa **ổ đĩa ảo** trong VM, không ảnh hưởng Windows thật.
+4. Cài đặt xong chọn **Restart now**.
+
+**Quan trọng:** Sau khi restart, nếu VM boot lại vào màn cài đặt, hãy tháo ISO:
+- VMware → **VM Settings → CD/DVD** → bỏ tick:
+  - `Connected`
+  - `Connect at power on`
+- Reboot lại VM.
+
+
+
+
+
+
 
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/38c0c45c-a7b7-4314-a03e-809311290aa3" />
@@ -147,49 +179,15 @@ Bước 2: Sẽ thấy các lựa chọn:
 
 
 
-# B1 — Cài Ubuntu 24.04.4 LTS trên VMware + SSH từ Windows vào Ubuntu
 
-> Mục tiêu B1:  
-> - Cài Ubuntu 24.04.4 LTS bằng file ISO trên máy ảo (VMware/VirtualBox/Hyper-V).  
-> - Cấu hình mạng để từ **Windows CMD** có thể SSH vào Ubuntu.  
-> - Ví dụ lệnh SSH: `ssh <user>@<ip_ubuntu>`
 
----
 
-## 1) Chuẩn bị
-- Tải file ISO: **Ubuntu 24.04.4 LTS (Desktop)** từ trang Ubuntu.
-- Cài công cụ ảo hóa: **VMware Workstation** (hoặc VirtualBox/Hyper-V).
+
+
 
 ---
 
-## 2) Tạo máy ảo Ubuntu trên VMware
-1. **Create a New Virtual Machine**
-2. Chọn **Installer disc image file (iso)** và trỏ đến file ISO Ubuntu.
-3. Cấu hình tối thiểu gợi ý:
-   - CPU: 2 cores
-   - RAM: 4 GB
-   - Disk: 30 GB (hoặc hơn)
-4. Bật máy ảo và bắt đầu cài Ubuntu.
 
----
-
-## 3) Cài đặt Ubuntu 24.04.4 LTS (Desktop)
-Trong trình cài đặt Ubuntu:
-1. Chọn ngôn ngữ, bàn phím (khuyến nghị **English (US)** nếu bị lỗi gõ tiếng Việt).
-2. Tới bước tạo user:
-   - **Your name**: có thể để không dấu, ví dụ `Luong Van Hoc`
-   - **Your computer’s name**: dùng chữ thường + dấu `-`, ví dụ `ubuntu-vm`
-   - **Your username**: ví dụ `admin1` (lưu ý: một số bản cài Desktop không cho dùng `admin` vì reserved)
-   - Đặt mật khẩu
-3. Disk setup: chọn **Erase disk and install Ubuntu**  
-   > Chỉ xóa **ổ đĩa ảo** trong VM, không ảnh hưởng Windows thật.
-4. Cài đặt xong chọn **Restart now**.
-
-**Quan trọng:** Sau khi restart, nếu VM boot lại vào màn cài đặt, hãy tháo ISO:
-- VMware → **VM Settings → CD/DVD** → bỏ tick:
-  - `Connected`
-  - `Connect at power on`
-- Reboot lại VM.
 
 ---
 
@@ -284,5 +282,12 @@ ssh admin@192.168.1.10
 - Windows CMD SSH vào Ubuntu thành công bằng `ssh <user>@<ip>`.
 
 
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/a5fb2def-46a6-4611-9ae3-decfa5e6dcb6" />
 
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/5ed1ecbb-3573-4e2b-9637-a3ebd447ee8e" />
+
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/62c1aa86-406d-45c9-b24d-a15516706192" />
+
+
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/3e4320b7-1097-40b3-8bfd-eb07510ee993" />
 
