@@ -244,11 +244,76 @@ curl http://localhost/api/hello
 <img width="893" height="389" alt="image" src="https://github.com/user-attachments/assets/e7625dca-dba8-4b72-9dbf-ce14f29b6486" />
 
 
+# C-7. Bắt buộc đăng nhập Node-RED (Edit `./nodered/settings.js`)
 
 
+## 1) Chạy docker compose lần đầu để Node-RED tự sinh cấu hình trong `./nodered`
+Chuyển vào thư mục dự án và chạy compose:
+
+```bash
+cd ~/myapp
+docker compose up -d
+```
+
+Kiểm tra các container đang chạy:
+
+```bash
+docker compose ps
+```
+
+Kiểm tra Node-RED đã tự sinh dữ liệu và file cấu hình trong thư mục `./nodered`:
+
+```bash
+ls -la ./nodered | head
+ls -la ./nodered/settings.js
+```
+
+<img width="1103" height="639" alt="image" src="https://github.com/user-attachments/assets/35e68901-8344-4dc9-8d9f-7cf613e2719f" />
+
+## 2) Tạo mật khẩu dạng hash (bcrypt) để dùng trong `settings.js`
+Node-RED yêu cầu lưu mật khẩu ở dạng hash. Tạo hash bằng cách chạy lệnh sau:
+
+```bash
+docker exec -it nodered node -e "console.log(require('bcryptjs').hashSync(process.argv[1], 8));" '@12345'
+```
+Sau khi chạy, terminal sẽ in ra chuỗi hash `$2b$08$FBCqY.tD8km4rgWhSquBFe0Q9CybgdAQosQ5HQdFj0NH8H2qXAD5.`.  
+**Copy chuỗi hash này** để dán vào `settings.js`.
+
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/5693c6ae-b262-42ac-a036-6fdcc1105a3c" />
 
 
+## 3) Edit `./nodered/settings.js` để bật đăng nhập (adminAuth)
+Mở file:
 
+```bash
+nano ./nodered/settings.js
+```
+
+Trong nano, tìm `adminAuth`:
+- Bấm `Ctrl + W`
+- Gõ `adminAuth` rồi Enter
+
+Tại block `adminAuth`, tiến hành:
+- **Bỏ comment** (xoá dấu `//` ở đầu các dòng của block `adminAuth` nếu đang bị comment)
+- Điền `username` và dán `password` (hash bcrypt) vừa tạo
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/89399d3e-f9c0-4a41-bef2-526f8433a0ff" />
+
+Lưu và thoát:
+- Lưu: `Ctrl + O` → Enter
+- Thoát: `Ctrl + X`
+
+
+## 4) Restart Node-RED để áp dụng cấu hình
+```bash
+docker compose restart nodered
+```
+
+## 5) Kiểm tra kết quả
+Mở trình duyệt:
+- `http://192.168.1.8:1880/`
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/df2e94de-4da3-41c1-8fec-2de2590e0628" />
 
 
 
