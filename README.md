@@ -8,16 +8,16 @@
 
 ## 📁 Mục Lục
 
-| Phần | Nội dung | Link |
+| Phần | Tiêu đề | Link |
 |---|---|---|
-| **A** | Đăng ký tên miền & cấu hình Cloudflare | [A.md](./A.md) |
-| **B** | Cài đặt Ubuntu 24.04.4 LTS + Docker + SSH + UFW | [B.md](./B.md) |
-| **C** | Cấu hình Docker Compose (Nginx + Node-RED + Web) | [C.md](./C.md) |
-| **D** | Bonus: Flask API (myapi) + Dockerfile + Nginx proxy | [D.md](./D.md) |
-| **E** | Triển khai level test + kiểm thử các service | [E.md](./E.md) |
-| **F** | Gỡ lỗi + healthcheck + giới hạn tài nguyên | [F.md](./F.md) |
-| **G** | Public qua Cloudflare Tunnel + Q&A | [G.md](./G.md) |
-
+| **A** | **A. Đăng ký tên miền xịn cho cá nhân:** | [A.md](./A.md) |
+| **B** | **B. Cài đặt Ubuntu + Docker** | [B.md](./B.md) |
+| **C** | **C. Cấu hình docker compose:** | [C.md](./C.md) |
+| **D** | **D. Bonus** | [D.md](./D.md) |
+| **E** | **E. Triển khai (level test) ứng dụng** | [E.md](./E.md) |
+| **F** | **F. Gỡ lỗi:** | [F.md](./F.md) |
+| **G** | **G. Triển khai ứng dụng đến End-user** | [G.md](./G.md) |
+| **G-QA** | **G. Câu hỏi về bài làm?** | [G_QA.md](./G_QA.md) |
 
 
 ## 🗂️ Cấu trúc thư mục dự án (tham khảo)
