@@ -1,6 +1,6 @@
 # G. Triển khai ứng dụng đến End-user (Cloudflare Tunnel + Docker Compose)
 
-## G.1 Tạo Cloudflare Tunnel (triển khai kiểu Docker)
+## G.1) Tạo Cloudflare Tunnel (triển khai kiểu Docker)
 
 1. Truy cập Cloudflare Zero Trust (Cloudflare One):  
    `https://one.dash.cloudflare.com`
@@ -22,7 +22,7 @@
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/f47efcbe-0596-45f6-9255-98da6b0e9978" />
 
 
-## G.2 Convert lệnh `docker run` sang `docker compose`
+## G.2) Convert lệnh `docker run` sang `docker compose`
 
 Cloudflare cung cấp lệnh mẫu dạng:
 
@@ -33,9 +33,9 @@ docker run cloudflare/cloudflared:latest tunnel --no-autoupdate run --token eyJh
 Thay vì chạy trực tiếp, ta đưa cấu hình này vào `docker-compose.yml` để quản lý cùng các container khác (nginx, nodered, myapi,…).
 
 
-## G.3 Khai báo cloudflared vào `docker-compose.yml`
+## G.3) Khai báo cloudflared vào `docker-compose.yml`
 
-### G.3.1 Tạo file `.env` để chứa token
+### 3.1 Tạo file `.env` để chứa token
 
 Trong thư mục dự án, tạo file `.env`:
 
@@ -48,7 +48,7 @@ nano .env
 <img width="1103" height="639" alt="image" src="https://github.com/user-attachments/assets/ef9a5004-1d2f-459a-8460-fef5cf9f6f3e" />
 
 
-### G.3.2 Thêm service `cloudflared` vào `docker-compose.yml`
+### 3.2 Thêm service `cloudflared` vào `docker-compose.yml`
 
 Mở file:
 
@@ -72,7 +72,7 @@ Lưu file: **Ctrl+O → Enter → Ctrl+X**
 
 
 
-## G.4 Chạy lại Docker Compose
+## G.4) Chạy lại Docker Compose
 
 ```bash
 cd ~/myapp
@@ -107,7 +107,7 @@ Bấm **Save / Complete setup**.
 
 ## G.6 Kiểm tra URL đã public cho end-user
 
-### G.6.1 Kiểm tra website
+### 6.1 Kiểm tra website
 Truy cập từ trình duyệt:
 
 - `http://www.luongvanhoc.io.vn/`
@@ -117,8 +117,8 @@ Website hiển thị bình thường.
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0dcc69db-c46e-4735-addf-2576332d652b" />
 
-### G.6.2 Kiểm tra API qua Nginx
-Thực hiện gọi API (qua web hoặc trực tiếp endpoint) và nhận phản hồi **200 OK** (ví dụ Node-RED trả JSON “Hello from Node-RED”).
+### 6.2 Kiểm tra API qua Nginx
+Thực hiện gọi API (qua web hoặc trực tiếp endpoint) và nhận phản hồi **200 OK** (Node-RED trả JSON “Hello from Node-RED”).
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d282604f-176b-47ae-ae4d-b0753190add0" />
 
