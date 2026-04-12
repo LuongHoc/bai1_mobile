@@ -1,6 +1,6 @@
 # C. Cấu hình Docker Compose
 
-# C-1) Tạo thư mục `~/myapp`
+# C-1. Tạo thư mục `~/myapp`
 Chạy lệnh:
 ```bash
 mkdir -p ~/myapp
@@ -8,20 +8,20 @@ mkdir -p ~/myapp
 <img width="1102" height="640" alt="image" src="https://github.com/user-attachments/assets/06d2432c-d971-4f28-b44e-a4690c0acff8" />
 
 
-# C-2) Chuyển vào trong thư mục `~/myapp`
+# C-2. Chuyển vào trong thư mục `~/myapp`
 Chạy lệnh:
 ```bash
 cd ~/myapp
 ```
 
-# C-3) Tạo thư mục `./myweb`
+# C-3. Tạo thư mục `./myweb`
 Đảm bảo đang đứng trong `~/myapp`, sau đó chạy:
 ```bash
 mkdir -p ./myweb
 ```
 <img width="1105" height="640" alt="image" src="https://github.com/user-attachments/assets/989fd37f-ae42-4252-ba86-9eced1cebb04" />
 
-# C-4) Tạo file `./myweb/index.html` (nội dung thông tin cá nhân)
+# C-4. Tạo file `./myweb/index.html` (nội dung thông tin cá nhân)
 Tạo và chỉnh sửa file:
 ```bash
 nano ./myweb/index.html
@@ -56,7 +56,7 @@ Lưu và thoát nano:
 - Lưu: `Ctrl + O` → Enter
 - Thoát: `Ctrl + X`
 
-# C-5 — Tạo file `docker-compose.yml` (Node-RED + Nginx)
+# C-5. Tạo file `docker-compose.yml` (Node-RED + Nginx)
 
 ## 1) Tạo các thư mục cần thiết
 Trong thư mục `~/myapp`, tạo các thư mục chứa dữ liệu Node-RED và cấu hình Nginx:
@@ -314,32 +314,6 @@ Mở trình duyệt:
 - `http://192.168.1.8:1880/`
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/df2e94de-4da3-41c1-8fec-2de2590e0628" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
