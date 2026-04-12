@@ -1,6 +1,6 @@
 # D. Bonus
 
-## D-1) Tạo thư mục `./myapi`
+## D-1. Tạo thư mục `./myapi`
 ```bash
 cd ~/myapp
 mkdir -p ./myapi
@@ -9,7 +9,7 @@ mkdir -p ./myapi
 <img width="1103" height="642" alt="image" src="https://github.com/user-attachments/assets/c1ab97a3-70f1-4834-b289-2bb978f99b35" />
 
 
-## D.2) Tạo file `./myapi/app.py` (Flask API “funny”/demo)
+## D.2. Tạo file `./myapi/app.py` (Flask API “funny”/demo)
 Tạo file:
 ```bash
 nano ./myapi/app.py
@@ -57,7 +57,7 @@ Lưu/thoát:
 - Lưu: `Ctrl + O` → Enter
 - Thoát: `Ctrl + X`
 
-## D.3) Tạo file `./myapi/requirements.txt`
+## D.3. Tạo file `./myapi/requirements.txt`
 ```bash
 nano ./myapi/requirements.txt
 ```
@@ -69,7 +69,7 @@ flask
 
 <img width="1104" height="642" alt="image" src="https://github.com/user-attachments/assets/d89c2830-b68a-43c8-9ae4-9ea772e14d58" />
 
-## D.4) Tạo file `./myapi/Dockerfile` (Python 3.9 slim)
+## D.4. Tạo file `./myapi/Dockerfile` (Python 3.9 slim)
 ```bash
 nano ./myapi/Dockerfile
 ```
@@ -98,7 +98,7 @@ CMD ["python", "app.py"]
 ```
 
 
-## D.5) Sửa `docker-compose.yml` để chạy service `myapi`
+## D.5. Sửa `docker-compose.yml` để chạy service `myapi`
 Mở file:
 ```bash
 nano ~/myapp/docker-compose.yml
@@ -144,7 +144,7 @@ Kỳ vọng trả JSON:
 <img width="1107" height="643" alt="image" src="https://github.com/user-attachments/assets/b4df0940-5d80-4470-b03e-21f026410410" />
 
 
-## D.6) Sửa `nginx/nginx.conf` để `/api` trỏ tới `myapi` cổng 9630
+## D.6. Sửa `nginx/nginx.conf` để `/api` trỏ tới `myapi` cổng 9630
 Mở file:
 ```bash
 nano ~/myapp/nginx/nginx.conf
