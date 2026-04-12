@@ -1,6 +1,6 @@
 # E. Triển khai (level test) ứng dụng
 
-## E.1) Chuyển vào trong thư mục dự án
+# E-1. Chuyển vào trong thư mục dự án
 ```bash
 cd ~/myapp
 pwd
@@ -9,7 +9,7 @@ pwd
 <img width="1105" height="612" alt="image" src="https://github.com/user-attachments/assets/ecc90b22-95b5-4b38-836c-03fbbdee2af6" />
 
 
-## E.2) Chạy Docker Compose (run tất cả services trong `docker-compose.yml`)
+# E-2. Chạy Docker Compose (run tất cả services trong `docker-compose.yml`)
 Chạy lệnh:
 ```bash
 docker compose up -d
@@ -17,7 +17,7 @@ docker compose up -d
 
 <img width="1106" height="614" alt="image" src="https://github.com/user-attachments/assets/6b1cda63-1d0f-4782-9255-b4aa6994e6b1" />
 
-## E.3) Kiểm tra các container đang chạy (phát hiện restart)
+# E-3. Kiểm tra các container đang chạy (phát hiện restart)
 Kiểm tra trạng thái:
 ```bash
 docker compose ps
@@ -26,16 +26,16 @@ docker compose ps
 <img width="1109" height="613" alt="image" src="https://github.com/user-attachments/assets/f2296a63-af85-4c1c-8c3d-6d7222c57f5e" />
 
 
-## E.4) Kiểm thử các service đang chạy độc lập theo IP và port
+# E-4. Kiểm thử các service đang chạy độc lập theo IP và port
 
-### 1) Xem IP của Ubuntu
+## 1. Xem IP của Ubuntu
 ```bash
 ip -4 addr
 ```
 
 <img width="1109" height="611" alt="image" src="https://github.com/user-attachments/assets/fbd56bcf-87fc-4d0a-b539-fe87d55f3ef2" />
 
-### 2) Kiểm thử Nginx (web server port 80)
+## 2. Kiểm thử Nginx (web server port 80)
 ```bash
 curl -I http://localhost/
 ```
@@ -49,7 +49,7 @@ Trên Windows mở trình duyệt:
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/7232ebfc-dc88-43d6-a503-7103b719390c" />
 
 
-### 3) Kiểm thử Node‑RED (port 1880)
+## 3. Kiểm thử Node‑RED (port 1880)
 Trên Ubuntu:
 ```bash
 curl -I http://localhost:1880/
@@ -65,9 +65,9 @@ Trên Windows mở trình duyệt:
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/76e8d62f-b092-4bf8-9999-100eb1d4e64a" />
 
 
-## E.5) Sử dụng Node‑RED tạo API GET đơn giản (http_in → function → http_response)
+# E-5. Sử dụng Node‑RED tạo API GET đơn giản (http_in → function → http_response)
 
-### 1) Tạo Flow trong Node‑RED
+## 1. Tạo Flow trong Node‑RED
 Mở Node‑RED:  
 `http://192.168.1.8:1880/`
 
@@ -90,7 +90,7 @@ Bấm **Deploy** để lưu flow.
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/21a4fbef-b21a-44eb-b2bb-04b7c27236b1" />
 
 
-### 2) Test API trực tiếp qua Node‑RED
+## 2. Test API trực tiếp qua Node‑RED
 ```bash
 curl -i http://localhost:1880/api/hello
 ```
@@ -99,7 +99,7 @@ Kỳ vọng: `HTTP/1.1 200 OK` và JSON `{"ok":true,"msg":"Hello from Node-RED"}
 <img width="1102" height="612" alt="image" src="https://github.com/user-attachments/assets/2c71d59e-ecdf-481d-b8af-cc4f3093f615" />
 
 
-### 3) Cấu hình Nginx `/api/` reverse proxy sang Node‑RED
+## 3. Cấu hình Nginx `/api/` reverse proxy sang Node‑RED
 Mở file:
 ```bash
 nano ~/myapp/nginx/nginx.conf
@@ -122,7 +122,7 @@ Restart Nginx:
 docker compose restart nginx
 ```
 
-### 4) Test API qua Nginx Reverse Proxy
+## 4. Test API qua Nginx Reverse Proxy
 Do Node‑RED endpoint đang là `/api/hello`, và Nginx prefix cũng là `/api/`, nên URL test sẽ là:
 
 ```bash
@@ -131,7 +131,7 @@ curl -i http://localhost/api/api/hello
 
 <img width="1111" height="614" alt="image" src="https://github.com/user-attachments/assets/717c8b06-af72-4f2a-8f37-6e3bfc33dd9d" />
 
-## E.6) Sửa `./myweb/index.html` để gọi API đã khai báo proxy_pass (qua Nginx)
+# E-6. Sửa `./myweb/index.html` để gọi API đã khai báo proxy_pass (qua Nginx)
 
 Mở file:
 ```bash
@@ -198,7 +198,7 @@ Nội dung ví dụ hoàn chỉnh (HTML + JS gọi API qua Nginx):
 <img width="1103" height="609" alt="image" src="https://github.com/user-attachments/assets/0e3435f4-538f-42a1-ba3d-fa3357c35a1f" />
 
 
-### Kiểm thử trên trình duyệt (End-user)
+## Kiểm thử trên trình duyệt (End-user)
 Trên Windows mở:
 - `http://192.168.1.8/`
 
