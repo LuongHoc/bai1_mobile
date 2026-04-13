@@ -45,6 +45,11 @@ nano .env
 ```
 <img width="1105" height="643" alt="image" src="https://github.com/user-attachments/assets/e76cb4ef-bcb8-4b03-9142-507f1a3e8d2d" />
 
+```
+CLOUDFLARE_TUNNEL_TOKEN=eyJhIjoiZWNhNDdhZWZiNmMyZWM3MWVkMWY5ZmI3NDZjZmQwNzMiLCJ0IjoiOTAyMDUxMzQtMTVlNi00ZWYwLTkxMzUtNGVjODhiZDQ4YWQwIiwicyI6Ik1XRmhOemxpWTJFdFpHWTFNeTAwWXpJekxXRTVOamN0WW1SaE5UZG1PVGRoWWpZMCJ9
+
+```
+
 <img width="1103" height="639" alt="image" src="https://github.com/user-attachments/assets/ef9a5004-1d2f-459a-8460-fef5cf9f6f3e" />
 
 
